@@ -1,0 +1,1 @@
+This simulates the lock in [The Magnus Protocol Mysteries: The Doppelganger](https://magnusprotocolmysteries.com/cases/the-doppelganger/).
