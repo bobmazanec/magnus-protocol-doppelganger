@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Doppelganger</title>
+  <style>
+  body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; margin-top: 4rem; }
+  .digits { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+  input { width: 4rem; font-size: 2.5rem; text-align: center; }
+  button { font-size: 1.2rem; padding: .5rem 1.5rem; }
+  </style>
+</head>
+  <body>
+    <h1>Enter the Code</h1>
+    <div class="digits">
+      <input type="number" min="-1" max="10" aria-label="Digit 1">
+      <input type="number" min="-1" max="10" aria-label="Digit 2">
+      <input type="number" min="-1" max="10" aria-label="Digit 3">
+    </div>
+    <button id="try">Try Lock</button>
+
+    <script>
+      const inputs = document.querySelectorAll('.digits input');
+
+      const a = 29;
+      const beta = 0x12;
+      const charlie = inputs.length;
+      const delta = 6
+      const eighteen = 0o14;
+      const fifteen = 4;
+      const googol = 0b101;
+      const hotel = 0o10;
+      const iota = hotel - 0b111;
+      const juliet = eighteen - charlie;
+      const kappa = eighteen + delta + hotel + charlie - iota;
+
+      inputs.forEach(input => {
+        input.value = Math.floor(Math.random() * 10);
+        input.addEventListener('input', () => {
+          if (input.value === '-1') {
+            input.value = '9';
+          } else if (input.value === '10') {
+            input.value = '0';
+          } else {
+            input.value = input.value.replace(/\D/g, '').slice(-1);
+          }
+        });
+      });
+
+      document.getElementById('try').addEventListener('click', () => {
+        const code = parseInt(Array.from(inputs, i => i.value).join(''), 10);
+        // Congratulations on finding this, I guess 🤷‍♂️
+        //
+        // If you just want some help figuring out the code,
+        // maybe check out the publisher's hint page:
+        // https://magnusprotocolmysteries.com/hints/the-doppelganger/
+        //
+        // I've tried to obscure the answer at least a little
+        // but, sure, if you really want it, here it is:
+        alert(
+          'The lock ' +
+          ( code === (
+              ( a +
+                (beta / charlie - delta) +
+                (eighteen - fifteen * charlie) +
+                ((googol & charlie) - (googol ^ fifteen)) +
+                ((hotel | iota) - juliet)
+              ) * kappa
+            ) ? 'opened!' : 'did not open.'
+          )
+        );
+      });
+    </script>
+  </body>
+</html>
